@@ -1,20 +1,11 @@
 
 <Project Sdk="Microsoft.NET.Sdk">
 
-using System;
-
-class Program
-{
-    static void Main(string[] args)
-    {
-        Console.Write("What is your first name? ");
-        string first = Console.ReadLine();
-
-        Console.Write("What is your last name? ");
-        string last = Console.ReadLine();
-
-        Console.WriteLine($"Your name is {last}, {first} {last}.");
-    }
-}
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
 
 </Project>
