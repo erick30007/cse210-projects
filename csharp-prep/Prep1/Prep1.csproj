@@ -1,4 +1,6 @@
 
+<Project Sdk="Microsoft.NET.Sdk">
+
 using System;
 
 class Program
@@ -14,3 +16,5 @@ class Program
         Console.WriteLine($"Your name is {last}, {first} {last}.");
     }
 }
+
+</Project>
