@@ -1,3 +1,5 @@
+using System;
+
 namespace ScriptureMemorization
 {
     public class Word
@@ -11,11 +13,20 @@ namespace ScriptureMemorization
             _isHidden = false;
         }
 
-        public void Hide() => _isHidden = true;
+        public void Hide()
+        {
+            _isHidden = true;
+        }
 
-        public void Show() => _isHidden = false;
+        public void Show()
+        {
+            _isHidden = false;
+        }
 
-        public bool IsHidden() => _isHidden;
+        public bool IsHidden()
+        {
+            return _isHidden;
+        }
 
         public string GetDisplayText()
         {

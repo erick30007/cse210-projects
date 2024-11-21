@@ -1,3 +1,5 @@
+using System;
+
 namespace ScriptureMemorization
 {
     public class Reference
@@ -12,7 +14,7 @@ namespace ScriptureMemorization
             _book = book;
             _chapter = chapter;
             _verse = verse;
-            _endVerse = -1;
+            _endVerse = verse; // Single verse
         }
 
         public Reference(string book, int chapter, int startVerse, int endVerse)
@@ -25,11 +27,17 @@ namespace ScriptureMemorization
 
         public string GetDisplayText()
         {
-            return _endVerse == -1
-                ? $"{_book} {_chapter}:{_verse}"
-                : $"{_book} {_chapter}:{_verse}-{_endVerse}";
+            if (_verse == _endVerse)
+            {
+                return $"{_book} {_chapter}:{_verse}";
+            }
+            else
+            {
+                return $"{_book} {_chapter}:{_verse}-{_endVerse}";
+            }
         }
     }
 }
+
 
 
