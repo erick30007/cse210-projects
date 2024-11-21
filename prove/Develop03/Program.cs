@@ -21,7 +21,7 @@ namespace ScriptureMemorization
                 if (scripture.IsCompletelyHidden())
                 {
                     Console.Clear();
-                    Console.WriteLine("All words are hidden. Well done!\n");
+                    Console.WriteLine("All words are hidden. The program will now end. :)\n");
                     break;
                 }
 
