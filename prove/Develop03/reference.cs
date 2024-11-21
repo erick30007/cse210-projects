@@ -14,7 +14,7 @@ namespace ScriptureMemorization
             _book = book;
             _chapter = chapter;
             _verse = verse;
-            _endVerse = verse; // Single verse
+            _endVerse = verse; 
         }
 
         public Reference(string book, int chapter, int startVerse, int endVerse)
