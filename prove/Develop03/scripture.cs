@@ -24,7 +24,7 @@ namespace ScriptureMemorization
             {
                 int index = random.Next(visibleWords.Count);
                 visibleWords[index].Hide();
-                visibleWords.RemoveAt(index); 
+                visibleWords.RemoveAt(index);
             }
         }
 
@@ -40,3 +40,4 @@ namespace ScriptureMemorization
         }
     }
 }
+
