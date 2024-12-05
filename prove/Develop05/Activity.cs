@@ -1,11 +1,15 @@
 using System;
 using System.Threading;
 
-public class Activity
+public abstract class Activity
 {
-    protected string _name;
-    protected string _description;
-    protected int _duration;
+    private string _name;
+    private string _description;
+    private int _duration;
+
+    protected string Name { get { return _name; } }
+    protected string Description { get { return _description; } }
+    protected int Duration { get { return _duration; } }
 
     public Activity(string name, string description)
     {
@@ -13,41 +17,40 @@ public class Activity
         _description = description;
     }
 
+    public void SetDuration(int duration)
+    {
+        _duration = duration;
+    }
+
     public void DisplayStartingMessage()
     {
-        Console.Clear();
-        Console.WriteLine($"Welcome to the {_name}!");
-        Console.WriteLine($"\n{_description}");
-        Console.Write("\nHow long, in seconds, would you like your session to be? ");
-        _duration = int.Parse(Console.ReadLine() ?? "30"); 
-        Console.WriteLine("\nPrepare to begin...");
-        ShowSpinner(3);
+        Console.WriteLine($"Welcome to the {Name} activity.");
+        Console.WriteLine($"{Description}\n");
+        Console.Write("How long, in seconds, would you like for your session? ");
+        int duration = int.Parse(Console.ReadLine());
+        SetDuration(duration);
     }
 
     public void DisplayEndingMessage()
     {
         Console.WriteLine("\nWell done!");
-        Console.WriteLine($"You have completed {_duration} seconds of the {_name}.\n");
         ShowSpinner(3);
+        Console.WriteLine($"You have completed {Duration} seconds of the {Name} activity.");
     }
 
-    public void ShowSpinner(int seconds)
+    public void ShowSpinner(int durationInSeconds)
     {
-        DateTime endTime = DateTime.Now.AddSeconds(seconds);
-        while (DateTime.Now < endTime)
+        for (int i = 0; i < durationInSeconds * 10; i++)
         {
             Console.Write("|");
-            Thread.Sleep(200);
-            Console.Write("\b \b");
-            Console.Write("/");
-            Thread.Sleep(200);
-            Console.Write("\b \b");
-            Console.Write("-");
-            Thread.Sleep(200);
-            Console.Write("\b \b");
-            Console.Write("\\");
-            Thread.Sleep(200);
-            Console.Write("\b \b");
+            Thread.Sleep(100);
+            Console.Write("\b/");
+            Thread.Sleep(100);
+            Console.Write("\b-");
+            Thread.Sleep(100);
+            Console.Write("\b\\");
+            Thread.Sleep(100);
+            Console.Write("\b");
         }
     }
 
@@ -61,3 +64,4 @@ public class Activity
         }
     }
 }
+
