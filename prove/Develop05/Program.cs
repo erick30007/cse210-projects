@@ -6,31 +6,39 @@ class Program
     {
         while (true)
         {
+            Console.Clear();
             Console.WriteLine("Mindfulness Program");
             Console.WriteLine("1. Breathing Activity");
             Console.WriteLine("2. Listing Activity");
             Console.WriteLine("3. Reflecting Activity");
             Console.WriteLine("4. Quit");
-            Console.Write("Select an option: ");
+            Console.Write("\nSelect an option: ");
+            string choice = Console.ReadLine();
 
-            int choice = int.Parse(Console.ReadLine());
-
-            if (choice == 4) break;
-
-            Activity activity = choice switch
+            switch (choice)
             {
-                1 => new BreathingActivity(),
-                2 => new ListingActivity(),
-                3 => new ReflectingActivity(),
-                _ => null
-            };
-
-            if (activity is BreathingActivity breathing) breathing.PerformBreathing();
-            if (activity is ListingActivity listing) listing.PerformListing();
-            if (activity is ReflectingActivity reflecting) reflecting.PerformReflection();
-
-            Console.Clear();
+                case "1":
+                    BreathingActivity breathing = new BreathingActivity();
+                    breathing.Run();
+                    break;
+                case "2":
+                    ListingActivity listing = new ListingActivity();
+                    listing.Run();
+                    break;
+                case "3":
+                    ReflectingActivity reflecting = new ReflectingActivity();
+                    reflecting.Run();
+                    break;
+                case "4":
+                    Console.WriteLine("Goodbye!");
+                    return;
+                default:
+                    Console.WriteLine("Invalid choice. Please try again.");
+                    Thread.Sleep(2000);
+                    break;
+            }
         }
     }
 }
+
 

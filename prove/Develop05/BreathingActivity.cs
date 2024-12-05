@@ -1,26 +1,27 @@
-using System;
-
 public class BreathingActivity : Activity
 {
-    public BreathingActivity() : base("Breathing", "This activity helps you relax by guiding you through slow breathing exercises. we recommend you to be in a place where there is silence and nothing to interrupt you. Clear your mind and focus on your breathing.") { }
+    public BreathingActivity() : base("Breathing Activity", 
+        "This activity will help you relax by walking you through breathing in and out slowly. Clear your mind and focus on your breathing.")
+    {
+    }
 
-    public void PerformBreathing()
+    public void Run()
     {
         DisplayStartingMessage();
+        DateTime endTime = DateTime.Now.AddSeconds(_duration);
 
-        Console.WriteLine("Follow the instructions to breathe in and out.\n");
-
-        int interval = Duration / 2; 
-        for (int i = 0; i < interval; i++)
+        while (DateTime.Now < endTime)
         {
             Console.Write("Breathe in...");
-            ShowCountDown(3);
-            Console.WriteLine(" Now breathe out...");
-            ShowCountDown(3);
+            ShowCountDown(4);
+            Console.WriteLine();
+            Console.Write("Now breathe out...");
+            ShowCountDown(6);
             Console.WriteLine();
         }
 
         DisplayEndingMessage();
     }
 }
+
 
