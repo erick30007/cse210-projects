@@ -1,0 +1,106 @@
+1. Abstract Class Goal
+The Goal class defines the basic structure for all types of goals. It is an abstract class, meaning you cannot create objects directly from it but must inherit and implement its methods.
+
+Properties:
+Name: The name of the goal.
+Description: A brief description of the goal.
+Points: The points awarded when the goal is completed.
+Abstract Methods (to be implemented by child classes):
+IsComplete(): Checks if the goal is completed.
+RecordEvent(): Records an event (e.g., progress towards completing the goal) and returns points earned.
+GetDetails(): Returns a string representation of the goal details.
+SaveData(): Returns a string format for saving the goal to a file.
+2. Derived Classes
+SimpleGoal
+A goal that is completed with a single event.
+
+Properties:
+
+_isComplete: Tracks whether the goal is complete.
+Constructor: Initializes Name, Description, Points, and sets _isComplete to false.
+
+Methods:
+
+IsComplete(): Returns _isComplete.
+RecordEvent(): Marks the goal as complete and returns the points if not already completed.
+GetDetails(): Shows goal details in a format like [ X ] Name (Description), where X means completed.
+SaveData(): Returns a string like SimpleGoal:name,description,points,isComplete.
+EternalGoal
+A recurring goal that never completes.
+
+Constructor: Initializes Name, Description, and Points.
+
+Methods:
+
+IsComplete(): Always returns false because this goal is perpetual.
+RecordEvent(): Adds points every time an event is recorded.
+GetDetails(): Shows the goal details without a completion mark.
+SaveData(): Returns a string like EternalGoal:name,description,points.
+ChecklistGoal
+A goal with a target count and bonus for full completion.
+
+Properties:
+
+_timesCompleted: Tracks how many times the goal has been completed.
+_targetCount: The number of completions required.
+_bonus: Bonus points awarded upon full completion.
+Constructor: Initializes Name, Description, Points, _targetCount, _bonus, and sets _timesCompleted to 0.
+
+Methods:
+
+IsComplete(): Checks if _timesCompleted meets or exceeds _targetCount.
+RecordEvent(): Increments _timesCompleted and returns points. Awards the bonus upon full completion.
+GetDetails(): Shows goal details with completion progress, e.g., [ X ] Name (Description) -- Completed 3/5.
+SaveData(): Returns a string like ChecklistGoal:name,description,points,timesCompleted,targetCount,bonus.
+3. GoalManager Class
+Manages a collection of goals and tracks the user's total score.
+
+Fields:
+
+_goals: A list of Goal objects.
+_score: Tracks the user's total score.
+Methods:
+
+AddGoal(Goal goal): Adds a new goal to the list.
+RecordEvent(int goalIndex): Records an event for a specified goal by index and adds points to the score.
+DisplayGoals(): Displays all goals and their details.
+SaveToFile(string filename): Saves the score and goals to a file.
+LoadFromFile(string filename): Loads the score and goals from a file.
+GetScore(): Returns the current score.
+4. Program Class
+The main program loop, which allows the user to interact with the system.
+
+Main Menu:
+Create a New Goal:
+Prompts the user to select the goal type (SimpleGoal, EternalGoal, ChecklistGoal).
+Asks for goal details (name, description, points, etc.).
+Adds the new goal to the GoalManager.
+List Goals:
+Displays all the goals using the DisplayGoals() method.
+Record Event:
+Displays all goals and prompts the user to select one.
+Records an event for the chosen goal and updates the score.
+Display Score:
+Shows the current score using the GetScore() method.
+Save Goals:
+Saves goals and score to a file specified by the user.
+Quit:
+Exits the program.
+How to Save and Load Goals
+Goals are saved in a text file using the SaveData() method.
+The LoadFromFile() method reads this file to reconstruct the goals and score.
+Sample Interaction
+Creating a Simple Goal:
+
+Goal: Finish the course (100 points).
+Displays as [ ] Finish the course (Try to complete the course to go home).
+Recording an Event:
+
+Marks the goal as complete and adds 100 points to the score.
+Saving to a File:
+
+Saves data in a format like:
+vbnet
+Copiar código
+100
+SimpleGoal:Finish the course,Try to complete the course to go home,100,true
